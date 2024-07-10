@@ -1,0 +1,106 @@
+import random
+import time
+import os 
+
+def clear_screen():
+    """화면을 지우는 함수."""
+    os.system('cls' if os.name == 'nt' else 'clear') 
+
+def memory_exercise():
+    """
+    기억력 훈련: 사용자에게 숫자 순서를 보여주고 입력을 요구합니다.
+    이 훈련은 단기 기억력과 집중력을 향상시키는 데 도움이 됩니다.
+    """
+    sequence = [random.randint(0, 9) for _ in range(5)]
+    print(f"기억하세요: {sequence}")
+    time.sleep(5)
+    clear_screen() # 화면 지우기
+    
+    answer = input("숫자 순서를 공백으로 구분하여 입력하세요: ").split()
+    answer = [int(num) for num in answer]
+    
+    if answer == sequence:
+        print("정답입니다! 훌륭한 기억력!")
+    else:
+        print(f"틀렸습니다. 정답은: {sequence}") 
+
+def attention_exercise():
+    """
+    주의력 훈련: 사용자가 기호가 나타나면 빠르게 반응해야 합니다.
+    이 훈련은 주의력과 반응 속도를 향상시키는 데 도움이 됩니다.
+    """
+    print("'*'를 보면 Enter 키를 누르세요.")
+    time.sleep(random.randint(2, 5))
+    start_time = time.time()
+    input("*")
+    reaction_time = time.time() - start_time
+    print(f"당신의 반응 시간: {reaction_time:.2f} 초") 
+
+def logic_exercise():
+    """
+    논리 문제: 간단한 수학 퍼즐을 해결하세요.
+    이 훈련은 논리적 사고와 문제 해결 능력을 자극합니다.
+    """
+    print("문제를 해결하세요: 5 + 3 * 2는 얼마입니까?")
+    answer = int(input("정답을 입력하세요: "))
+    
+    if answer == 11:
+        print("정답입니다! 훌륭한 논리력!")
+    else:
+        print("오답입니다. 정답은: 11") 
+
+def math_exercise():
+    """
+    수학 문제: 무작위 수학 문제를 제공합니다.
+    이 훈련은 수학적 사고와 논리력을 향상시키는 데 도움이 됩니다.
+    """
+    num1 = random.randint(1, 10)
+    num2 = random.randint(1, 10)
+    operator = random.choice(['+', '-', '*'])
+    
+    if operator == '+':
+        correct_answer = num1 + num2
+    elif operator == '-':
+        correct_answer = num1 - num2
+    elif operator == '*':
+        correct_answer = num1 * num2
+    
+    print(f"문제를 풀어보세요: {num1} {operator} {num2}")
+    answer = int(input("정답을 입력하세요: "))
+    
+    if answer == correct_answer:
+        print("정답입니다! 수학적 사고 능력이 뛰어납니다!")
+    else:
+        print(f"오답입니다. 정답은: {correct_answer}") 
+
+def main_menu():
+    """
+    메인 메뉴: 사용자에게 선택할 수 있는 다양한 인지 훈련을 제공합니다.
+    """
+    while True:
+        clear_screen() # 화면을 깨끗하게 지웁니다
+        print("\n인지 훈련 메뉴:")
+        print("1. 기억력 훈련")
+        print("2. 주의력 훈련")
+        print("3. 논리 문제")
+        print("4. 수학 문제")
+        print("5. 종료")
+        
+        choice = input("훈련을 선택하세요: ")
+        
+        if choice == "1":
+            memory_exercise()
+        elif choice == "2":
+            attention_exercise()
+        elif choice == "3":
+            logic_exercise()
+        elif choice == "4":
+            math_exercise()
+        elif choice == "5":
+            print("안녕히 가십시오!")
+            break
+        else:
+            input("잘못된 선택입니다. 계속하려면 Enter를 누르세요.") 
+
+if __name__ == "__main__":
+    main_menu()
